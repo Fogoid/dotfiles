@@ -30,19 +30,14 @@ return require('packer').startup(function(use)
 		  {'hrsh7th/nvim-cmp'},     -- Required
 		  {'hrsh7th/cmp-nvim-lsp'}, -- Required
 		  {'L3MON4D3/LuaSnip'},     -- Required
-	  }
+	        
+          {'Hoffs/omnisharp-extended-lsp.nvim'} -- Additional for omnisharp config
+      }
   }
 
   use 'mbbill/undotree'
   use 'tpope/vim-fugitive'
   use 'theprimeagen/harpoon'
-
-  -- rust debugger
-  use 'simrat39/rust-tools.nvim'
-
-  -- Debugging
-  use 'nvim-lua/plenary.nvim'
-  use 'mfussenegger/nvim-dap'
 end)
 
 
