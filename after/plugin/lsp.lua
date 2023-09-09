@@ -13,7 +13,6 @@ lsp.on_attach(function(_, bufnr)
     vim.keymap.set("n", "<leader>gref", function() vim.lsp.buf.references() end, opts)
     vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-  --lsp.default_keymaps({buffer = bufnr})
 end)
 
 lspconfig.omnisharp.setup{
@@ -30,7 +29,7 @@ lspconfig.omnisharp.setup{
     organize_imports_on_format = true
 }
 
---lspconfig.rust_analyzer.setup{}
+lspconfig.rust_analyzer.setup{}
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
