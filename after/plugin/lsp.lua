@@ -13,6 +13,7 @@ lsp.on_attach(function(_, bufnr)
     vim.keymap.set("n", "<leader>gref", function() vim.lsp.buf.references() end, opts)
     vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+    vim.keymap.set({ 'n', 'v' }, '<leader>qa', function() vim.lsp.buf.code_action() end, opts)
 end)
 
 lspconfig.omnisharp.setup{
