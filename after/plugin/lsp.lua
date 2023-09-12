@@ -13,11 +13,15 @@ lsp.on_attach(function(_, bufnr)
     vim.keymap.set("n", "<leader>gref", function() vim.lsp.buf.references() end, opts)
     vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+    vim.keymap.set("n", "<leader>gi", function() vim.lsp.buf.implementation() end, opts)
+    vim.keymap.set("n", "<leader>ho", function() vim.lsp.buf.hover() end, opts)
+    vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set({ 'n', 'v' }, '<leader>qa', function() vim.lsp.buf.code_action() end, opts)
 end)
 
+local omnisharpProject = vim.fn.input('Omnisharp Project:')
 lspconfig.omnisharp.setup{
-    cmd = { "dotnet", "C:/DevTools/Omnisharp/Omnisharp.dll" },
+    cmd = { "dotnet", "C:/DevTools/Omnisharp/Omnisharp.dll", "-s", omnisharpProject },
 
     handlers = {
         ["textDocument/definition"] = omnisharpExt.handler

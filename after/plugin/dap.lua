@@ -7,30 +7,6 @@ dap.adapters.coreclr = {
     args = {'--interpreter=vscode'}
 }
 
-dap.configurations.cs = {
-{
-    type = "coreclr",
-    name = "launch - netcoredbg",
-    request = "launch",
-    program = function()
-        return vim.fn.input('Path to dll', vim.fn.getcwd() .. '\\bin\\Debug\\', 'file')
-    end,
-  },
-}
-
-dap.adapters.codelldb = {
-  type = 'server',
-  port = '${port}',
-  executable = {
-    -- CHANGE THIS to your path!
-    command = 'C:/Users/Diogo/.vscode/extensions/vadimcn.vscode-lldb-1.9.2/adapter/codelldb.exe',
-    args = {'--port', '${port}'},
-
-    -- On windows you may have to uncomment this:
-    detached = false,
-  }
-}
-
 dap.configurations.cpp = {
   {
     name = "Launch file",
@@ -46,6 +22,8 @@ dap.configurations.cpp = {
 
 dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp
+vscExt.json_decode = overseerJson.decode
+vscExt.load_launchjs(nil, { coreclr = { 'cs' } })
 
 -- keymaps
 vim.keymap.set('n', '<F5>', function() dap.continue() end)
@@ -67,3 +45,5 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
+
+overseer.setup({})

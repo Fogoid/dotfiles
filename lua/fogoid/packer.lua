@@ -40,6 +40,6 @@ return require('packer').startup(function(use)
   use 'theprimeagen/harpoon'
 
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
-
+  use 'stevearc/overseer.nvim'
 end)
 
