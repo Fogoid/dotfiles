@@ -36,7 +36,6 @@ return require('packer').startup(function(use)
   }
 
   use 'mbbill/undotree'
-  --use 'theprimeagen/harpoon'
 
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
   use 'stevearc/overseer.nvim'
@@ -47,15 +46,13 @@ return require('packer').startup(function(use)
 
   -- Enhance UI
   use {
-  "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
-    requires = { 
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
-    }
+    "dinhhuy258/sfm.nvim",
+    requires = {{ "dinhhuy258/sfm-git.nvim" }},
+    config = function()
+      local sfm_explorer = require("sfm").setup {}
+      sfm_explorer:load_extension "sfm-git"
+    end
   }
-
   use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
   use { 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }
 end)

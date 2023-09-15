@@ -34,7 +34,7 @@ lspconfig.omnisharp.setup{
     organize_imports_on_format = true
 }
 
-lspconfig.rust_analyzer.setup{}
+--lspconfig.rust_analyzer.setup{}
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}

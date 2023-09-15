@@ -10,21 +10,19 @@ dap.adapters.coreclr = {
     args = {'--interpreter=vscode'}
 }
 
-dap.configurations.cpp = {
-  {
-    name = "Launch file",
-    type = "codelldb",
-    request = "launch",
-    program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '\\', 'file')
-    end,
-    cwd = '${workspaceFolder}',
-    stopOnEntry = false,
-  },
-}
+--dap.adapters.codelldb = {
+--  type = 'server',
+--  port = '${port}',
+--  executable = {
+--    -- CHANGE THIS to your path!
+--    command = 'C:/Users/Diogo/.vscode/extensions/vadimcn.vscode-lldb-1.9.2/adapter/codelldb.exe',
+--    args = {'--port', '${port}'},
+--
+--    -- On windows you may have to uncomment this:
+--    detached = false,
+--  }
+--}
 
-dap.configurations.c = dap.configurations.cpp
-dap.configurations.rust = dap.configurations.cpp
 vscExt.json_decode = overseerJson.decode
 vscExt.load_launchjs(nil, { coreclr = { 'cs' } })
 
