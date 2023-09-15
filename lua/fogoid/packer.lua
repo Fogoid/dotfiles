@@ -13,7 +13,7 @@ return require('packer').startup(function(use)
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  use({ 'rose-pine/neovim', as = 'rose-pine', config = function() vim.cmd('colorscheme rose-pine') end })
+  use({ 'maxmx03/fluoromachine.nvim', as = 'fluoromachine', config = function() vim.cmd('colorscheme fluoromachine') end })
 
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 
@@ -36,10 +36,27 @@ return require('packer').startup(function(use)
   }
 
   use 'mbbill/undotree'
-  use 'tpope/vim-fugitive'
-  use 'theprimeagen/harpoon'
+  --use 'theprimeagen/harpoon'
 
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
   use 'stevearc/overseer.nvim'
+
+  --Git
+  use 'tpope/vim-fugitive'
+  use 'lewis6991/gitsigns.nvim'
+
+  -- Enhance UI
+  use {
+  "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    requires = { 
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+    }
+  }
+
+  use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
+  use { 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }
 end)
 

@@ -23,6 +23,9 @@ vim.opt.signcolumn = "yes"
 
 vim.g.mapleader = " "
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 --dap mappings
 vim.keymap.set('n', '<F5>', function() require('dap').continue() end)
 vim.keymap.set('n', '<F10>', function() require('dap').step_over() end)

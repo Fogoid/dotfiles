@@ -1,5 +1,8 @@
 local dap = require('dap')
 local dapui = require('dapui')
+local vscExt = require('dap.ext.vscode')
+local overseer = require('overseer')
+local overseerJson = require('overseer.json')
 
 dap.adapters.coreclr = {
     type = 'executable',

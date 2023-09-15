@@ -9,11 +9,11 @@ lsp.on_attach(function(_, bufnr)
   -- to learn the available actions
     
     local opts = { buffer = bufnr, remap = false }
-    vim.keymap.set("n", "<leader>gd", function() omnisharpExt.telescope_lsp_definitions() end, opts) 
-    vim.keymap.set("n", "<leader>gref", function() vim.lsp.buf.references() end, opts)
-    vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
+    vim.keymap.set("n", "<leader>vd", function() omnisharpExt.telescope_lsp_definitions() end, opts) 
+    vim.keymap.set("n", "<leader>vr", function() vim.lsp.buf.references() end, opts)
+    vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-    vim.keymap.set("n", "<leader>gi", function() vim.lsp.buf.implementation() end, opts)
+    vim.keymap.set("n", "<leader>vi", function() vim.lsp.buf.implementation() end, opts)
     vim.keymap.set("n", "<leader>ho", function() vim.lsp.buf.hover() end, opts)
     vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set({ 'n', 'v' }, '<leader>qa', function() vim.lsp.buf.code_action() end, opts)

@@ -1,7 +1,8 @@
 function ColorMyPencils(color)
-	color = color or "rose-pine"
+	color = color or "fluoromachine"
 	vim.cmd.colorscheme(color)
 end
+
 
 ColorMyPencils()
 
