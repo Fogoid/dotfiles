@@ -45,15 +45,14 @@ return require('packer').startup(function(use)
   use 'lewis6991/gitsigns.nvim'
 
   -- Enhance UI
-  use {
-    "dinhhuy258/sfm.nvim",
-    requires = {{ "dinhhuy258/sfm-git.nvim" }},
-    config = function()
-      local sfm_explorer = require("sfm").setup {}
-      sfm_explorer:load_extension "sfm-git"
-    end
-  }
-  use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
+  use 'dinhhuy258/sfm.nvim'
+  use({
+      'willothy/nvim-cokeline',
+      requires = {
+          "nvim-lua/plenary.nvim",        -- Required for v0.4.0+
+          "kyazdani42/nvim-web-devicons", -- If you want devicons
+      }
+  })
   use { 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }
 end)
 

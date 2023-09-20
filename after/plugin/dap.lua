@@ -10,21 +10,21 @@ dap.adapters.coreclr = {
     args = {'--interpreter=vscode'}
 }
 
---dap.adapters.codelldb = {
---  type = 'server',
---  port = '${port}',
---  executable = {
---    -- CHANGE THIS to your path!
---    command = 'C:/Users/Diogo/.vscode/extensions/vadimcn.vscode-lldb-1.9.2/adapter/codelldb.exe',
---    args = {'--port', '${port}'},
---
---    -- On windows you may have to uncomment this:
---    detached = false,
---  }
---}
+dap.adapters.codelldb = {
+  type = 'server',
+  port = '${port}',
+  executable = {
+    -- CHANGE THIS to your path!
+    command = 'C:/Users/Diogo/.vscode/extensions/vadimcn.vscode-lldb-1.9.2/adapter/codelldb.exe',
+    args = {'--port', '${port}'},
+
+    -- On windows you may have to uncomment this:
+    detached = false,
+  }
+}
 
 vscExt.json_decode = overseerJson.decode
-vscExt.load_launchjs(nil, { coreclr = { 'cs' } })
+vscExt.load_launchjs(nil, { coreclr = { 'cs' }, codelldb = { 'rust' } })
 
 -- keymaps
 vim.keymap.set('n', '<F5>', function() dap.continue() end)
