@@ -1,8 +1,4 @@
 local lualine = require 'lualine'
 
-lualine.setup {
-  options = {
-    theme = 'retrowave'
-  }
-}
+lualine.setup()
 

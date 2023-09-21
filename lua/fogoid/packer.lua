@@ -13,7 +13,7 @@ return require('packer').startup(function(use)
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  use({ 'maxmx03/fluoromachine.nvim', as = 'fluoromachine', config = function() vim.cmd('colorscheme fluoromachine') end })
+  use({ 'catppuccin/nvim', as = 'catppuccin', config = function() vim.cmd('colorscheme catppuccin') end })
 
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 
