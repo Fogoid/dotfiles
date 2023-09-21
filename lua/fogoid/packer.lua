@@ -36,8 +36,8 @@ return require('packer').startup(function(use)
   }
 
   use 'mbbill/undotree'
-
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  use { "leoluz/nvim-dap-go", requires = {"mfussenegger/nvim-dap"} }
   use 'stevearc/overseer.nvim'
 
   --Git
@@ -54,6 +54,12 @@ return require('packer').startup(function(use)
       }
   })
   use { 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }
+
+  use({ "iamcco/markdown-preview.nvim", 
+    run = "cd app && npm install", 
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" },
+   })
+
     -- Session management
     use 'rmagatti/auto-session'
 end)

@@ -1,5 +1,6 @@
 local dap = require('dap')
 local dapui = require('dapui')
+local dapgo = require('dap-go')
 local vscExt = require('dap.ext.vscode')
 local overseer = require('overseer')
 local overseerJson = require('overseer.json')
@@ -33,6 +34,7 @@ vim.keymap.set('n', '<F11>', function() dap.step_into() end)
 vim.keymap.set('n', '<F12>', function() dap.step_out() end)
 vim.keymap.set('n', '<Leader>b', function() dap.toggle_breakpoint() end)
 
+dapgo.setup()
 
 --dap-ui config
 dapui.setup({})

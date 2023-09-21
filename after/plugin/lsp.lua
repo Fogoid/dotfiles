@@ -35,6 +35,7 @@ lspconfig.omnisharp.setup{
 }
 
 lspconfig.rust_analyzer.setup{}
+lspconfig.golangci_lint_ls.setup{}
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
