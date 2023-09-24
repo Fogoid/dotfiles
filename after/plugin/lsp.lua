@@ -17,6 +17,7 @@ lsp.on_attach(function(_, bufnr)
     vim.keymap.set("n", "<leader>ho", function() vim.lsp.buf.hover() end, opts)
     vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set({ 'n', 'v' }, '<leader>qa', function() vim.lsp.buf.code_action() end, opts)
+    vim.keymap.set('n', '<leader>dg', function() vim.diagnostic.open_float() end, opts)
 end)
 
 local omnisharpProject = vim.fn.input('Omnisharp Project:')
