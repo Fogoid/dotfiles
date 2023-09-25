@@ -4,62 +4,63 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
+    -- Packer can manage itself
+    use 'wbthomason/packer.nvim'
 
-  use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.2',
-    -- or                          , branch = '0.1.x',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
+    use {
+        'nvim-telescope/telescope.nvim', tag = '0.1.2',
+        -- or                          , branch = '0.1.x',
+        requires = { {'nvim-lua/plenary.nvim'} }
+    }
 
-  use({ 'catppuccin/nvim', as = 'catppuccin', config = function() vim.cmd('colorscheme catppuccin') end })
+    use({ 'catppuccin/nvim', as = 'catppuccin', config = function() vim.cmd('colorscheme catppuccin') end })
 
-  use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+    use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 
-  use {
-	  'VonHeikemen/lsp-zero.nvim',
-	  branch = 'v2.x',
-	  requires = {
-		  -- LSP Support
-		  {'neovim/nvim-lspconfig'},             -- Required
-		  {'williamboman/mason.nvim'},           -- Optional
-		  {'williamboman/mason-lspconfig.nvim'}, -- Optional
+    use {
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v2.x',
+        requires = {
+            -- LSP Support
+            {'neovim/nvim-lspconfig'},             -- Required
+            {'williamboman/mason.nvim'},           -- Optional
+            {'williamboman/mason-lspconfig.nvim'}, -- Optional
 
-		  -- Autocompletion
-		  {'hrsh7th/nvim-cmp'},     -- Required
-		  {'hrsh7th/cmp-nvim-lsp'}, -- Required
-		  {'L3MON4D3/LuaSnip'},     -- Required
-	        
-          {'Hoffs/omnisharp-extended-lsp.nvim'} -- Additional for omnisharp config
-      }
-  }
+            -- Autocompletion
+            {'hrsh7th/nvim-cmp'},     -- Required
+            {'hrsh7th/cmp-nvim-lsp'}, -- Required
+            {'L3MON4D3/LuaSnip'},     -- Required
 
-  use 'mbbill/undotree'
-  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
-  use { "leoluz/nvim-dap-go", requires = {"mfussenegger/nvim-dap"} }
-  use 'stevearc/overseer.nvim'
+            {'Hoffs/omnisharp-extended-lsp.nvim'} -- Additional for omnisharp config
+        }
+    }
 
-  --Git
-  use 'tpope/vim-fugitive'
-  use 'lewis6991/gitsigns.nvim'
+    use 'mbbill/undotree'
+    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+    use { "leoluz/nvim-dap-go", requires = {"mfussenegger/nvim-dap"} }
+    use 'stevearc/overseer.nvim'
 
-  -- Enhance UI
-  use 'dinhhuy258/sfm.nvim'
-  use({
-      'willothy/nvim-cokeline',
-      requires = {
-          "nvim-lua/plenary.nvim",        -- Required for v0.4.0+
-          "kyazdani42/nvim-web-devicons", -- If you want devicons
-      }
-  })
-  use { 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }
+    --Git
+    use 'tpope/vim-fugitive'
+    use 'lewis6991/gitsigns.nvim'
 
-  use({ "iamcco/markdown-preview.nvim", 
+    -- Enhance UI
+    use 'dinhhuy258/sfm.nvim'
+    use({
+        'willothy/nvim-cokeline',
+        requires = {
+            "nvim-lua/plenary.nvim",        -- Required for v0.4.0+
+            "kyazdani42/nvim-web-devicons", -- If you want devicons
+        }
+    })
+    use { 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }
+
+    use({ "iamcco/markdown-preview.nvim", 
     run = "cd app && npm install", 
     setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" },
-   })
+    })
 
+    use 'yamatsum/nvim-cursorline'
     -- Session management
     use 'rmagatti/auto-session'
 end)

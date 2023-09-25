@@ -1,6 +1,7 @@
 local lsp = require('lsp-zero').preset({})
 local lspconfig = require('lspconfig')
 local omnisharpExt = require('omnisharp_extended')
+local telescope = require('telescope.builtin')
 
 lsp.preset('recommended')
 
@@ -10,10 +11,11 @@ lsp.on_attach(function(_, bufnr)
     
     local opts = { buffer = bufnr, remap = false }
     vim.keymap.set("n", "<leader>vd", function() omnisharpExt.telescope_lsp_definitions() end, opts) 
-    vim.keymap.set("n", "<leader>vr", function() vim.lsp.buf.references() end, opts)
+    vim.keymap.set("n", "<leader>vr", function() telescope.lsp_references() end, opts)
     vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-    vim.keymap.set("n", "<leader>vi", function() vim.lsp.buf.implementation() end, opts)
+    vim.keymap.set("n", "<leader>vi", function() telescope.lsp_implementations() end, opts)
+    vim.keymap.set("n", "<C-LeftMouse>", function() telescope.lsp_implementations() end, opts)
     vim.keymap.set("n", "<leader>ho", function() vim.lsp.buf.hover() end, opts)
     vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set({ 'n', 'v' }, '<leader>qa', function() vim.lsp.buf.code_action() end, opts)
