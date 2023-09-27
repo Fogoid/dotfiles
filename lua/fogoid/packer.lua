@@ -45,7 +45,6 @@ return require('packer').startup(function(use)
     use 'lewis6991/gitsigns.nvim'
 
     -- Enhance UI
-    use 'dinhhuy258/sfm.nvim'
     use({
         'willothy/nvim-cokeline',
         requires = {
@@ -63,5 +62,7 @@ return require('packer').startup(function(use)
     use 'yamatsum/nvim-cursorline'
     -- Session management
     use 'rmagatti/auto-session'
+    
+    use 'gelguy/wilder.nvim'
 end)
 
