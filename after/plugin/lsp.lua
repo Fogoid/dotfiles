@@ -23,9 +23,8 @@ lsp.on_attach(function(_, bufnr)
     vim.keymap.set('n', '<leader>ff', '<cmd>LspZeroFormat!<CR>')
 end)
 
-local omnisharpProject = vim.fn.input('Omnisharp Project:')
 lspconfig.omnisharp.setup{
-    cmd = { "dotnet", "C:/DevTools/Omnisharp/Omnisharp.dll", "-s", omnisharpProject },
+    cmd = { "dotnet", "C:/DevTools/Omnisharp/Omnisharp.dll" },
 
     handlers = {
         ["textDocument/definition"] = omnisharpExt.handler
