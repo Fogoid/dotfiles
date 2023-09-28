@@ -45,13 +45,7 @@ return require('packer').startup(function(use)
     use 'lewis6991/gitsigns.nvim'
 
     -- Enhance UI
-    use({
-        'willothy/nvim-cokeline',
-        requires = {
-            "nvim-lua/plenary.nvim",        -- Required for v0.4.0+
-            "kyazdani42/nvim-web-devicons", -- If you want devicons
-        }
-    })
+    use 'ThePrimeagen/harpoon'
     use { 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }
 
     use({ "iamcco/markdown-preview.nvim", 

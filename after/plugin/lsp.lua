@@ -20,6 +20,7 @@ lsp.on_attach(function(_, bufnr)
     vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set({ 'n', 'v' }, '<leader>qa', function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set('n', '<leader>dg', function() vim.diagnostic.open_float() end, opts)
+    vim.keymap.set('n', '<leader>ff', '<cmd>LspZeroFormat!<CR>')
 end)
 
 local omnisharpProject = vim.fn.input('Omnisharp Project:')
@@ -56,15 +57,11 @@ lsp.setup_nvim_cmp({
   mapping = cmp_mappings
 })
 
-lsp.format_on_save({
-    format_opts = {
-        async = false,
-        timeout_ms = 10000,
-    },
-    servers = {
-        ['rust_analyser'] = {'rust'},
-        ['omnisharp'] = {'c_sharp'}
-    }
+lsp.set_sign_icons({
+  error = '✘',
+  warn = '▲',
+  hint = '⚑',
+  info = '»'
 })
 
 lsp.setup()
