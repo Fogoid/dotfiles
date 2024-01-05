@@ -22,6 +22,10 @@ vim.opt.termguicolors = true
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 
+vim.g.markdown_fenced_languages = {
+  "ts=typescript"
+}
+
 vim.g.mapleader = " "
 
 --dap mappings

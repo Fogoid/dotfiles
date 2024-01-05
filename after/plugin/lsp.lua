@@ -27,6 +27,7 @@ lsp_zero.on_attach(function(_, bufnr)
 end)
 
 lspconfig.rust_analyzer.setup {}
+lspconfig.denols.setup {}
 lspconfig.gopls.setup {}
 lspconfig.lua_ls.setup {
     settings = {
