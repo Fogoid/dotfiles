@@ -61,6 +61,7 @@ return {
             lspconfig.rust_analyzer.setup { capabilites = capabilites }
             lspconfig.denols.setup { capabilites = capabilites }
             lspconfig.gopls.setup { capabilites = capabilites }
+            lspconfig.dockerls.setup { capabilites = capabilites }
             lspconfig.lua_ls.setup {
                 on_init = function(client)
                     local path = client.workspace_folders[1].name
@@ -107,7 +108,7 @@ return {
                     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
                     vim.keymap.set("n", "<leader>ho", function() vim.lsp.buf.hover() end, opts)
                     vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end, opts)
-                    vim.keymap.set({ 'n', 'v' }, '<leader>ca', function() trouble.toggle("quickfix") end, opts)
+                    vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
                     vim.keymap.set('n', '<leader>vd', function() trouble.toggle("document_diagnostics") end, opts)
                     vim.keymap.set('n', '<leader>vwd', function() trouble.toggle("workspace_diagnostics") end, opts)
                     vim.keymap.set('n', '<leader>ff', function()

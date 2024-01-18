@@ -4,8 +4,6 @@ return {
         lazy = false,
         priority = 1000,
         config = function()
-            vim.cmd([[colorscheme noctis]])
-
             vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = '#f5c2e7', bold = false })
             vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#89dceb', bold = true })
             vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#f5c2e7', bold = false })
@@ -14,6 +12,19 @@ return {
             'rktjmp/lush.nvim'
         }
     },
+    {
+        'rose-pine/neovim',
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.cmd([[colorscheme rose-pine]])
+
+            vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = '#f5c2e7', bold = false })
+            vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#89dceb', bold = true })
+            vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#f5c2e7', bold = false })
+        end,
+    },
+
 
     {
         'nvim-lualine/lualine.nvim',
@@ -56,7 +67,8 @@ return {
             }
 
             for i, fg in ipairs(gradient) do
-                gradient[i] = wilder.make_hl('WilderGradient' .. i, 'Pmenu', { { a = 1 }, { a = 1 }, { foreground = fg } })
+                gradient[i] = wilder.make_hl('WilderGradient' .. i, 'Pmenu',
+                    { { a = 1 }, { a = 1 }, { foreground = fg } })
             end
 
             wilder.set_option('renderer', wilder.popupmenu_renderer({
