@@ -1,0 +1,36 @@
+[
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      "space w w": "workspace::Save",
+      "space w q": "pane::CloseActiveItem",
+      "space w Q": "pane::CloseAllItems",
+      "space w n": "pane::ActivateNextItem",
+      "space w p": "pane::ActivatePrevItem",
+      "space p f": "file_finder::Toggle",
+      "space h o": "editor::Hover",
+      "space p v": ["workspace::SendKeystrokes", ": E enter"]
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "space h o": "editor::Hover"
+    }
+  },
+  {
+    "context": "!Terminal",
+    "bindings": {
+      "ctrl-shift-t": "terminal_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-shift-n": "pane::ActivateNextItem",
+      "ctrl-shift-p": "pane::ActivatePrevItem",
+      "ctrl-shift-w": "pane::CloseActiveItem",
+      "ctrl-shift-a": "workspace::NewTerminal"
+    }
+  }
+]
