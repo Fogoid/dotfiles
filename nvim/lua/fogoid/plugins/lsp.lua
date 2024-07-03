@@ -25,9 +25,9 @@ return {
                 ['<C-n>'] = cmp.mapping.select_next_item(),
                 ['<C-u>'] = cmp.mapping.scroll_docs(-4),
                 ['<C-d>'] = cmp.mapping.scroll_docs(4),
-                ['<TAB>'] = cmp.mapping.confirm({ select = true }),
+                ['<C-y>'] = cmp.mapping.confirm({ select = true }),
                 ['<S-Tab>'] = nil,
-                ['<C-y>'] = cmp.mapping.complete(),
+                ['<C-Space>'] = cmp.mapping.complete(),
             })
 
             cmp.setup({
@@ -58,8 +58,6 @@ return {
             local telescope = require('telescope.builtin')
             local trouble = require('trouble')
 
-            lspconfig.rust_analyzer.setup { capabilites = capabilites }
-            lspconfig.denols.setup { capabilites = capabilites }
             lspconfig.gopls.setup { capabilites = capabilites }
             lspconfig.dockerls.setup { capabilites = capabilites }
             lspconfig.lua_ls.setup {
@@ -131,5 +129,5 @@ return {
             'williamboman/mason-lspconfig.nvim',
             "folke/trouble.nvim",
         }
-    }
+    },
 }
