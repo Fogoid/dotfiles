@@ -1,18 +1,5 @@
 return {
     {
-        'kartikp10/noctis.nvim',
-        lazy = false,
-        priority = 1000,
-        config = function()
-            vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = '#f5c2e7', bold = false })
-            vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#89dceb', bold = true })
-            vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#f5c2e7', bold = false })
-        end,
-        dependencies = {
-            'rktjmp/lush.nvim'
-        }
-    },
-    {
         'rose-pine/neovim',
         lazy = false,
         priority = 1000,
@@ -24,8 +11,6 @@ return {
             vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#f5c2e7', bold = false })
         end,
     },
-
-
     {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -35,23 +20,7 @@ return {
             }
         },
     },
-
-    {
-        'yamatsum/nvim-cursorline',
-        opts = {
-            cursorline = {
-                enable = true,
-                timeout = 1000,
-                number = false,
-            },
-            cursorword = {
-                enable = true,
-                min_length = 3,
-                hl = { underline = true },
-            }
-        }
-    },
-
+    { 'itchyny/vim-cursorword' },
     {
         'gelguy/wilder.nvim',
         opts = {
@@ -82,4 +51,14 @@ return {
             }))
         end
     },
+    {
+        "nvim-tree/nvim-tree.lua",
+        lazy = false,
+        dependencies = {
+            "nvim-tree/nvim-web-devicons"
+        },
+        config = function ()
+            require("nvim-tree").setup()
+        end,
+    }
 }

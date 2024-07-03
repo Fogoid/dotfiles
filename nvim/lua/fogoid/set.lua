@@ -1,4 +1,7 @@
-vim.opt.background = "dark" 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+vim.opt.background = "dark"
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -21,12 +24,14 @@ vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
+vim.opt.colorcolumn = "80"
 
 vim.g.markdown_fenced_languages = {
   "ts=typescript"
 }
 
 vim.g.mapleader = " "
+vim.o.clipboard = "unnamedplus"
 
 --dap mappings
 vim.keymap.set('n', '<F5>', function() require('dap').continue() end)
@@ -39,3 +44,18 @@ vim.keymap.set('n', '<Leader>ws', '<cmd>split<CR>')
 vim.keymap.set('n', '<Leader>wv', '<cmd>vsplit<CR>')
 vim.keymap.set('n', '<Leader>ww', '<cmd>w<CR>')
 vim.keymap.set('n', '<Leader>wq', '<cmd>q<CR>')
+
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*" },
+  command = [[%s/\s\+$//e]],
+})
+
+vim.keymap.set('n', '<Leader>pv', function()
+    local ft = require('nvim-tree.api')
+    if ft.tree.is_visible() and ft.tree.is_tree_buf() then
+      ft.tree.close()
+    else
+      ft.tree.open()
+    end
+end)
+
