@@ -15,7 +15,7 @@ return {
     { 'hrsh7th/cmp-nvim-lsp' },
     {
         'hrsh7th/nvim-cmp',
-        dependencies = {
+            dependencies = {
             'L3MON4D3/LuaSnip',
         },
         init = function()
@@ -56,40 +56,9 @@ return {
             local lspconfig = require('lspconfig')
             local capabilites = require('cmp_nvim_lsp').default_capabilities()
             local telescope = require('telescope.builtin')
-            local trouble = require('trouble')
+            local trouble = require('trouble.sources.telescope')
 
             lspconfig.gopls.setup { capabilites = capabilites }
-            lspconfig.dockerls.setup { capabilites = capabilites }
-            lspconfig.lua_ls.setup {
-                on_init = function(client)
-                    local path = client.workspace_folders[1].name
-                    if not vim.loop.fs_stat(path .. '/.luarc.json') and not vim.loop.fs_stat(path .. '/.luarc.jsonc') then
-                        client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
-                            Lua = {
-                                runtime = {
-                                    -- Tell the language server which version of Lua you're using
-                                    -- (most likely LuaJIT in the case of Neovim)
-                                    version = 'LuaJIT'
-                                },
-                                -- Make the server aware of Neovim runtime files
-                                workspace = {
-                                    checkThirdParty = false,
-                                    library = {
-                                        vim.env.VIMRUNTIME
-                                        -- "${3rd}/luv/library"
-                                        -- "${3rd}/busted/library",
-                                    }
-                                    -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-                                    -- library = vim.api.nvim_get_runtime_file("", true)
-                                }
-                            }
-                        })
-
-                        client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-                    end
-                    return true
-                end
-            }
             vim.api.nvim_create_autocmd('LspAttach', {
                 group = vim.api.nvim_create_augroup('UserLspConfig', {}),
                 callback = function(ev)
@@ -98,17 +67,19 @@ return {
 
                     -- Buffer local mappings.
                     local opts = { buffer = ev.buf }
-                    vim.keymap.set("n", "<leader>gd", function() telescope.lsp_definitions() end, opts)
                     vim.keymap.set("n", "<leader>gr", function() telescope.lsp_references() end, opts)
-                    vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end, opts)
+                    vim.keymap.set("n", "<leader>gd", function() telescope.lsp_definitions() end, opts)
+                    vim.keymap.set("n", "<C-LeftMouse>", function() telescope.lsp_definitions() end, opts)
                     vim.keymap.set("n", "<leader>gi", function() telescope.lsp_implementations() end, opts)
-                    vim.keymap.set("n", "<C-LeftMouse>", function() telescope.lsp_implementations() end, opts)
+                    vim.keymap.set("n", "<leader>gm", function() telescope.lsp_document_symbols() end, opts)
+                    vim.keymap.set("n", "<leader>gt", function() telescope.lsp_type_definitions() end, opts)
+                    vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end, opts)
                     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-                    vim.keymap.set("n", "<leader>ho", function() vim.lsp.buf.hover() end, opts)
+                    vim.keymap.set("n", "<leader>gh", function() vim.lsp.buf.hover() end, opts)
                     vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end, opts)
                     vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
-                    vim.keymap.set('n', '<leader>vd', function() trouble.toggle("document_diagnostics") end, opts)
-                    vim.keymap.set('n', '<leader>vwd', function() trouble.toggle("workspace_diagnostics") end, opts)
+                    vim.keymap.set('n', '<leader>vw', '<cmd>Trouble diagnostics toggle<cr>', opts)
+                    vim.keymap.set('n', '<leader>vd', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', opts)
                     vim.keymap.set('n', '<leader>ff', function()
                         vim.lsp.buf.format { async = true }
                     end, opts)

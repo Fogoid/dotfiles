@@ -1,24 +1,49 @@
 return {
     {
-        'rose-pine/neovim',
+        'catppuccin/nvim',
         lazy = false,
         priority = 1000,
         config = function()
-            vim.cmd([[colorscheme rose-pine]])
+            vim.cmd([[colorscheme catppuccin-mocha]])
 
-            vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = '#f5c2e7', bold = false })
-            vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#89dceb', bold = true })
-            vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#f5c2e7', bold = false })
+            vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = '#89dceb', bold = false })
+            vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#f5c2e7', bold = true })
+            vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#89dceb', bold = false })
         end,
     },
     {
         'nvim-lualine/lualine.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
-        opts = {
-            options = {
-                globalstatus = true
-            }
+        dependencies = {
+            "folke/trouble.nvim",
+            "nvim-tree/nvim-web-devicons"
         },
+        config = function()
+            local trouble = require("trouble")
+            local symbols = trouble.statusline({
+              mode = "lsp_document_symbols",
+              groups = {},
+              title = false,
+              filter = { range = true },
+              format = "{kind_icon}{symbol.name:Normal}",
+              -- The following line is needed to fix the background color
+              -- Set it to the lualine section you want to use
+              hl_group = "lualine_c_normal",
+            })
+
+            require('lualine').setup({
+                options = {
+                    globalstatus = true
+                },
+                winbar = {
+                    lualine_c = {
+                        {
+                            symbols.get,
+                            cond = symbols.has,
+                        }
+                    }
+                }
+            })
+        end,
     },
     { 'itchyny/vim-cursorword' },
     {
@@ -51,14 +76,4 @@ return {
             }))
         end
     },
-    {
-        "nvim-tree/nvim-tree.lua",
-        lazy = false,
-        dependencies = {
-            "nvim-tree/nvim-web-devicons"
-        },
-        config = function ()
-            require("nvim-tree").setup()
-        end,
-    }
 }

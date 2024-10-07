@@ -50,11 +50,14 @@ return {
         end,
         init = function()
             local harpoon = require('harpoon')
-            vim.keymap.set('n', '<leader>wn', function() harpoon:list():next() end)
-            vim.keymap.set('n', '<leader>wp', function() harpoon:list():prev() end)
-            vim.keymap.set('n', '<leader>wa', function() harpoon:list():append() end)
-            vim.keymap.set('n', '<leader>wt', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+            vim.keymap.set('n', '<S-n>', function() harpoon:list():next() end)
+            vim.keymap.set('n', '<S-p>', function() harpoon:list():prev() end)
+            vim.keymap.set('n', '<leader>a', function() harpoon:list():add() end)
+            vim.keymap.set('n', '<S-t>', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
         end
     },
 
+    {
+        'eshion/vim-sync',
+    }
 }
