@@ -11,4 +11,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup("fogoid.plugins")
+require('lazy').setup("fogoid.plugins", {
+    change_detectioe = { notify = false },
+})

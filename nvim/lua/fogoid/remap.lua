@@ -7,7 +7,11 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
-vim.keymap.set("n", "<leader>wl", "<C-w>l")
-vim.keymap.set("n", "<leader>wh", "<C-w>h")
-vim.keymap.set("n", "<leader>wj", "<C-w>j")
-vim.keymap.set("n", "<leader>wk", "<C-w>k")
+--mappings
+vim.keymap.set('n', '<Leader>h', '<cmd>split<CR>')
+vim.keymap.set('n', '<Leader>v', '<cmd>vsplit<CR>')
+vim.keymap.set('n', '<Leader>w', '<cmd>w!<CR>')
+vim.keymap.set('n', '<Leader>q', '<cmd>q!<CR>')
+
+vim.keymap.set('n', '<Leader>pv', vim.cmd.Ex)
+
