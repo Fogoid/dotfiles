@@ -7,6 +7,7 @@ return {
         },
         config = function()
             local dap, dapui = require("dap"), require("dapui")
+            require("dap.ext.vscode").load_launchjs()
             dapui.setup()
 
             dap.listeners.before.attach.dapui_config = function()
