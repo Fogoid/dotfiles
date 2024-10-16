@@ -12,5 +12,5 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup("fogoid.plugins", {
-    change_detectioe = { notify = false },
+    change_detection = { notify = false },
 })

@@ -36,11 +36,12 @@ return {
                 },
                 winbar = {
                     lualine_c = {
-                        {
-                            symbols.get,
-                            cond = symbols.has,
-                        }
-                    }
+                        { 'filename', path = 2 },
+                        { symbols.get, cond = symbols.has },
+                    },
+                    --lualine_b = {
+                    --    { symbols.get, cond = symbols.has }
+                    --},
                 }
             })
         end,
