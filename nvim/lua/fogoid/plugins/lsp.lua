@@ -15,7 +15,7 @@ return {
     { 'hrsh7th/cmp-nvim-lsp' },
     {
         'hrsh7th/nvim-cmp',
-            dependencies = {
+        dependencies = {
             'L3MON4D3/LuaSnip',
         },
         init = function()
@@ -56,7 +56,6 @@ return {
             local lspconfig = require('lspconfig')
             local capabilites = require('cmp_nvim_lsp').default_capabilities()
             local telescope = require('telescope.builtin')
-            local trouble = require('trouble.sources.telescope')
 
             lspconfig.gopls.setup { capabilites = capabilites }
             vim.api.nvim_create_autocmd('LspAttach', {
