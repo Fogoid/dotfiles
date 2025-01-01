@@ -1,15 +1,38 @@
 return {
     {
+        'olimorris/onedarkpro.nvim',
+    },
+    {
+        'rose-pine/neovim',
+    },
+    { 
+        'mellow-theme/mellow.nvim',
+        config = function()
+        end,
+    },
+    {
+        'rebelot/kanagawa.nvim',
+        config = function()
+        end,
+    },
+    {
         'catppuccin/nvim',
         lazy = false,
         priority = 1000,
-        config = function()
-            vim.cmd([[colorscheme catppuccin-mocha]])
+        init = function()
+            vim.cmd([[colorscheme catppuccin]])
 
             vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = '#89dceb', bold = false })
             vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#f5c2e7', bold = true })
             vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#89dceb', bold = false })
         end,
+        config = function()
+            require("catppuccin").setup({
+                transparent_background = true,
+            })
+        end,
+        opts = {
+        },
     },
     {
         'nvim-lualine/lualine.nvim',

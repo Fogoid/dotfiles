@@ -16,6 +16,7 @@ return {
     },
     {
         'nvim-treesitter/nvim-treesitter',
+        build = ":TSUpdate",
         config = function()
             require('nvim-treesitter.configs').setup {
                 ensure_installed = { "c", "python", "lua", "vim", "vimdoc", "query", "rust", "c_sharp", "java" },

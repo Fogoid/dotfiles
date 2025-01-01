@@ -35,6 +35,9 @@ return {
                 },
                 delve = {
                     path = "dlv",
+                    build_flags = {
+                        "-tags=integration",
+                    }
                 },
             }
 

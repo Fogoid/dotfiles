@@ -11,14 +11,18 @@ return {
         lazy = false
     },
     { 'williamboman/mason-lspconfig.nvim' },
-    { 'L3MON4D3/LuaSnip' },
+    { 
+        'L3MON4D3/LuaSnip',
+    },
     { 'hrsh7th/cmp-nvim-lsp' },
     {
         'hrsh7th/nvim-cmp',
-        dependencies = {
+            dependencies = {
             'L3MON4D3/LuaSnip',
+            'onsails/lspkind.nvim',
         },
         init = function()
+            local lspkind = require('lspkind')
             local cmp = require('cmp')
             local cmp_mappings = cmp.mapping.preset.insert({
                 ['<C-p>'] = cmp.mapping.select_prev_item(),
@@ -32,8 +36,19 @@ return {
 
             cmp.setup({
                 window = {
-                    completion = cmp.config.window.bordered(),
+                    completion = cmp.config.window.bordered(),    
                     documentation = cmp.config.window.bordered(),
+                },
+                formatting = {
+                  fields = { "kind", "abbr", "menu" },
+                  format = function(entry, vim_item)
+                    local kind = lspkind.cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+                    local strings = vim.split(kind.kind, "%s", { trimempty = true })
+                    kind.kind = " " .. (strings[1] or "") .. " "
+                    kind.menu = "    (" .. (strings[2] or "") .. ")"
+
+                    return kind
+                  end,
                 },
                 mapping = cmp_mappings,
                 snippet = {
@@ -48,7 +63,9 @@ return {
                     { name = 'buffer' },
                 })
             })
+
         end
+
     },
     {
         'neovim/nvim-lspconfig',
@@ -56,8 +73,29 @@ return {
             local lspconfig = require('lspconfig')
             local capabilites = require('cmp_nvim_lsp').default_capabilities()
             local telescope = require('telescope.builtin')
+            local trouble = require('trouble.sources.telescope')
 
-            lspconfig.gopls.setup { capabilites = capabilites }
+            lspconfig.rust_analyzer.setup {
+                capabilities = capabilities,
+                settings = {
+                    ['rust-analyzer'] = {
+                        diagnostics = {
+                            enable = false;
+                        }
+                    }
+                }
+            }
+            lspconfig.gopls.setup { 
+                capabilites = capabilites,
+                settings = {
+                    gopls = {
+                        buildFlags = {"-tags=integration"},
+                    },
+                },
+                init_options = {
+                    buildFlags = {"-tags=integration"},
+                },
+            }
             vim.api.nvim_create_autocmd('LspAttach', {
                 group = vim.api.nvim_create_augroup('UserLspConfig', {}),
                 callback = function(ev)

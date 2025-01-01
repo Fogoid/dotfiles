@@ -1,5 +1,5 @@
---vim.g.loaded_netrw = 1
---vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 vim.opt.background = "dark"
 vim.opt.nu = true
@@ -14,7 +14,7 @@ vim.opt.smartindent = true
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("USERPROFILE") .. "/.vim/undodir"
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
 vim.opt.hlsearch = false
@@ -33,8 +33,6 @@ vim.g.markdown_fenced_languages = {
 vim.g.mapleader = ","
 vim.o.clipboard = "unnamedplus"
 
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = { "*" },
-  command = [[%s/\s\+$//e]],
-})
+vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
+vim.opt.conceallevel = 1

@@ -13,5 +13,5 @@ vim.keymap.set('n', '<Leader>v', '<cmd>vsplit<CR>')
 vim.keymap.set('n', '<Leader>w', '<cmd>w!<CR>')
 vim.keymap.set('n', '<Leader>q', '<cmd>q!<CR>')
 
-vim.keymap.set('n', '<Leader>pv', vim.cmd.Ex)
+vim.keymap.set('n', '<Leader>pv', '<CMD>Oil<CR>')
 
