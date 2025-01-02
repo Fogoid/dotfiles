@@ -13,65 +13,68 @@ return {
     { 'williamboman/mason-lspconfig.nvim' },
     { 
         'L3MON4D3/LuaSnip',
-    },
-    { 'hrsh7th/cmp-nvim-lsp' },
-    {
-        'hrsh7th/nvim-cmp',
-            dependencies = {
-            'L3MON4D3/LuaSnip',
-            'onsails/lspkind.nvim',
-        },
-        init = function()
-            local lspkind = require('lspkind')
-            local cmp = require('cmp')
-            local cmp_mappings = cmp.mapping.preset.insert({
-                ['<C-p>'] = cmp.mapping.select_prev_item(),
-                ['<C-n>'] = cmp.mapping.select_next_item(),
-                ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-                ['<C-d>'] = cmp.mapping.scroll_docs(4),
-                ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-                ['<S-Tab>'] = nil,
-                ['<C-Space>'] = cmp.mapping.complete(),
-            })
-
-            cmp.setup({
-                window = {
-                    completion = cmp.config.window.bordered(),    
-                    documentation = cmp.config.window.bordered(),
-                },
-                formatting = {
-                  fields = { "kind", "abbr", "menu" },
-                  format = function(entry, vim_item)
-                    local kind = lspkind.cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
-                    local strings = vim.split(kind.kind, "%s", { trimempty = true })
-                    kind.kind = " " .. (strings[1] or "") .. " "
-                    kind.menu = "    (" .. (strings[2] or "") .. ")"
-
-                    return kind
-                  end,
-                },
-                mapping = cmp_mappings,
-                snippet = {
-                    expand = function(args)
-                        require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-                    end
-                },
-                sources = cmp.config.sources({
-                    { name = 'nvim_lsp' },
-                    { name = 'luasnip' }, -- For luasnip users.
-                }, {
-                    { name = 'buffer' },
-                })
-            })
-
+        config = function() 
+            require("luasnip.loaders.from_lua").load({ paths = "~/.snippets" })
         end
-
     },
+    --{ 'hrsh7th/cmp-nvim-lsp' },
+    --{
+    --    'hrsh7th/nvim-cmp',
+    --        dependencies = {
+    --        'L3MON4D3/LuaSnip',
+    --        'onsails/lspkind.nvim',
+    --    },
+    --    init = function()
+    --        local lspkind = require('lspkind')
+    --        local cmp = require('cmp')
+    --        local cmp_mappings = cmp.mapping.preset.insert({
+    --            ['<C-p>'] = cmp.mapping.select_prev_item(),
+    --            ['<C-n>'] = cmp.mapping.select_next_item(),
+    --            ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+    --            ['<C-d>'] = cmp.mapping.scroll_docs(4),
+    --            ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+    --            ['<S-Tab>'] = nil,
+    --            ['<C-Space>'] = cmp.mapping.complete(),
+    --        })
+
+    --        cmp.setup({
+    --            window = {
+    --                completion = cmp.config.window.bordered(),    
+    --                documentation = cmp.config.window.bordered(),
+    --            },
+    --            formatting = {
+    --              fields = { "kind", "abbr", "menu" },
+    --              format = function(entry, vim_item)
+    --                local kind = lspkind.cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+    --                local strings = vim.split(kind.kind, "%s", { trimempty = true })
+    --                kind.kind = " " .. (strings[1] or "") .. " "
+    --                kind.menu = "    (" .. (strings[2] or "") .. ")"
+
+    --                return kind
+    --              end,
+    --            },
+    --            mapping = cmp_mappings,
+    --            snippet = {
+    --                expand = function(args)
+    --                    require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+    --                end
+    --            },
+    --            sources = cmp.config.sources({
+    --                { name = 'nvim_lsp' },
+    --                { name = 'luasnip' }, -- For luasnip users.
+    --            }, {
+    --                { name = 'buffer' },
+    --            })
+    --        })
+
+    --    end
+
+    --},
     {
         'neovim/nvim-lspconfig',
         init = function()
             local lspconfig = require('lspconfig')
-            local capabilites = require('cmp_nvim_lsp').default_capabilities()
+            local capabilites = require('blink.cmp').get_lsp_capabilities()
             local telescope = require('telescope.builtin')
             local trouble = require('trouble.sources.telescope')
 
@@ -130,8 +133,7 @@ return {
             end
         end,
         dependencies = {
-            'hrsh7th/nvim-cmp',
-            'hrsh7th/cmp-nvim-lsp',
+            'saghen/blink.cmp',
             'nvim-telescope/telescope.nvim',
             'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
