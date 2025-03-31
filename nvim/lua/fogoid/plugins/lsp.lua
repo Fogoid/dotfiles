@@ -115,7 +115,7 @@ return {
                     vim.keymap.set("n", "<leader>gt", function() telescope.lsp_type_definitions() end, opts)
                     vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end, opts)
                     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-                    vim.keymap.set("n", "<leader>gh", function() vim.lsp.buf.hover() end, opts)
+                    vim.keymap.set("n", "<leader>gh", function() vim.diagnostic.open_float() end, opts)
                     vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end, opts)
                     vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
                     vim.keymap.set('n', '<leader>vw', '<cmd>Trouble diagnostics toggle<cr>', opts)
