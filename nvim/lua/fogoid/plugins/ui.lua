@@ -1,38 +1,45 @@
 return {
     {
-        'olimorris/onedarkpro.nvim',
-    },
-    {
-        'rose-pine/neovim',
-    },
-    { 
-        'mellow-theme/mellow.nvim',
-        config = function()
-        end,
-    },
-    {
-        'rebelot/kanagawa.nvim',
-        config = function()
-        end,
-    },
-    {
         'catppuccin/nvim',
+        name = "catppuccin",
         lazy = false,
         priority = 1000,
-        init = function()
-            vim.cmd([[colorscheme catppuccin]])
-
-            vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = '#89dceb', bold = false })
-            vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#f5c2e7', bold = true })
-            vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#89dceb', bold = false })
-        end,
-        config = function()
-            require("catppuccin").setup({
-                transparent_background = true,
-            })
-        end,
         opts = {
+            transparent_background = false,
+            styles = {
+                comments = { "italic" },
+                functions = { "bold" },
+                keywords = { "italic" },
+                operators = { "bold" },
+                conditionals = { "bold" },
+                loops = { "bold" },
+                booleans = { "bold", "italic" },
+                numbers = {},
+                types = {},
+                strings = {},
+                variables = {},
+                properties = {},
+            },
+            color_overrides = {
+                mocha = {
+                    base = "#000000",
+                    mantle = "#000000",
+                    crust = "#000000",
+                },
+                latte = {
+                    base = "#f8eecc",
+                    mantle = "#f8eecc",
+                    crust = "#f8eecc",
+                },
+            },
+            custom_highlights = {
+            }
         },
+        config = function(_, opts)
+            require("catppuccin").setup(opts)
+            vim.cmd.colorscheme("catppuccin")
+            vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#f5c2e7', bold = true })
+        end,
     },
     {
         'nvim-lualine/lualine.nvim',
