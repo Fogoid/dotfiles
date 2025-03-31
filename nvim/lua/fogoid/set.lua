@@ -24,7 +24,7 @@ vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "120"
 
 vim.g.markdown_fenced_languages = {
   "ts=typescript"
@@ -34,5 +34,3 @@ vim.g.mapleader = ","
 vim.o.clipboard = "unnamedplus"
 
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
-
-vim.opt.conceallevel = 1
